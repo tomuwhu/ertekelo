@@ -1,6 +1,6 @@
 <script>
     import Menu from './menu.svelte'
-    var kcssz = 5
+    var kcssz = 5, ivkcs
     const epml = [
         {
             szn: 'Krisztina',
@@ -27,26 +27,27 @@
             megj: []
         },
     ]
-    var bcs = new Map(), évcsid
 </script>
 <h1>Kezdőoldal: Csillagozós példa</h1>
 <div class="cont">
-    {#each epml as ep, j}
+    {#each epml as ep, k}
         <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div class="el" on:drop={(j, ep) => {
-            console.log(ep)
-            
-            if (bcs.has(évcsid)) {
-                //ep.oe++
-            } else {
-                bcs.set(évcsid, j)
+        <div class="el" on:drop={() => {
+            if (ivkcs == null) {
+                ep.oe++
                 kcssz--
+            } else {
+                ep.oe++
+                epml[ivkcs].oe--
             }
+            
         }} on:dragover={e => (e.preventDefault(), true)}>
             {ep.szn}<br>{ep.pmn}<br>
             <div class="cskk">
-                {#each Array(ep.oe).fill("*") as cs, i}
-                <div class="csk" id="x{i}" draggable="true">{cs}</div>
+                {#each Array(ep.oe).fill("*").map((v, i) => i) as i}
+                <div class="csk" id="x{i}" draggable="true" on:dragstart={() => {
+                    ivkcs = k
+                }}>*</div>
                 {/each}
             </div>
             
@@ -56,7 +57,7 @@
 <div class="cst">
     {#each Array(kcssz).fill("*") as cs, i}
         <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div class="cs" id="x{i}" draggable="true" on:dragstart={() => évcsid = i}>{cs}</div>
+        <div class="cs" id="x{i}" draggable="true" on:dragstart={() => ivkcs = null}>{cs}</div>
     {/each}
 </div>
 <hr>
