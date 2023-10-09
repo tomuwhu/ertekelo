@@ -33,7 +33,8 @@
 <div class="cont">
     {#each epml as ep, k}
         <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div class="el" on:drop={() => {
+        <div class="el" bind:this={ep.obj}
+        on:drop={() => {
             if (ivkcs == null) {
                 ep.oe++
                 kcssz--
@@ -41,14 +42,14 @@
                 ep.oe++
                 epml[ivkcs].oe--
             }
-            
-        }} on:dragover={e => (e.preventDefault(), true)}>
+        }} 
+        on:dragover={e => (e.preventDefault(), true)}>
             <b>{ep.szn}</b><br>{ep.pmn}<br>
             <div class="cskk">
                 {#each Array(ep.oe).fill("*").map((v, i) => i) as i}
                 <div class="csk" id="x{i}" draggable="true" on:dragstart={() => {
                     ivkcs = k
-                }}>*</div>
+                }}>🌟</div>
                 {/each}
             </div>
             
@@ -56,13 +57,11 @@
     {/each}
 </div>
 <div class="cst">
-    {#each Array(kcssz).fill("*") as cs, i}
+    {#each Array(kcssz).fill(0) as _, i}
         <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div class="cs" id="x{i}" draggable="true" on:dragstart={() => ivkcs = null}>{cs}</div>
+        <div class="cs" id="x{i}" draggable="true" on:dragstart={() => ivkcs = null}>🌟</div>
     {/each}
 </div>
-<hr>
-
 <style>
 h1 {
     text-align: center;
@@ -77,6 +76,7 @@ div.cont {
 div.el {
     display: inline-block;
     text-align: center;
+    height: 60px;
     padding: 20px;
     background-color: aquamarine;
     margin: 20px;
@@ -88,21 +88,28 @@ div.cst, div.cskk {
     display: flex;
     justify-content: center;
 }
+div.cst {
+    background-color: black;    
+}
 div.cs {
     display: inline-block;
-    margin: 20px;
-    padding: 20px;
-    font-size: 40px;
-    background-color: blueviolet;
+    margin: 0px;
+    padding: 0px;
+    font-size: 80px;
+    background:transparent;
+    transform: translateY(-3px);
     cursor: grab;
     border-radius: 20px;
 }
 div.csk {
     display: inline-block;
+    width: 20px;
+    height: 20px;
+    box-shadow: 1px 1px 4px black;
     margin: 4px;
     padding: 4px;
-    font-size: 10px;
-    background-color: blueviolet;
+    font-size: 16px;
+    background-color: rgb(41, 13, 68);
     cursor: grab;
     border-radius: 20px;
 }
