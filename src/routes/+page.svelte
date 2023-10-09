@@ -43,7 +43,7 @@
             }
             
         }} on:dragover={e => (e.preventDefault(), true)}>
-            {ep.szn}<br>{ep.pmn}<br>
+            <b>{ep.szn}</b><br>{ep.pmn}<br>
             <div class="cskk">
                 {#each Array(ep.oe).fill("*").map((v, i) => i) as i}
                 <div class="csk" id="x{i}" draggable="true" on:dragstart={() => {
@@ -64,12 +64,15 @@
 <hr>
 
 <style>
+h1 {
+    text-align: center;
+}
 div.cont {
     display: inline-block;
     width: 80%;
     margin: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 div.el {
     display: inline-block;
