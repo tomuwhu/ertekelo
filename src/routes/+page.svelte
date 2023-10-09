@@ -10,7 +10,7 @@
         },
         {
             szn: 'Peti',
-            pmn: 'Ez is valami fasza fullstack',
+            pmn: 'Ez is valami cool fullstack',
             oe: 0,
             megj: []
         },
@@ -28,6 +28,7 @@
         },
     ]
 </script>
+<Menu active="Kezdőoldal"></Menu>
 <h1>Kezdőoldal: Csillagozós példa</h1>
 <div class="cont">
     {#each epml as ep, k}
@@ -61,7 +62,7 @@
     {/each}
 </div>
 <hr>
-<Menu active="Kezdőoldal"></Menu>
+
 <style>
 div.cont {
     display: inline-block;

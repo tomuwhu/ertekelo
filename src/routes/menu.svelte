@@ -30,10 +30,10 @@
     .mh {
         background-color: black;
         color: gray;
-        position: absolute;
         bottom: 0px;
         user-select: none;
-        font-size: 30px;
+        font-size: 18px;
+        text-align: center;
     }
     .mh a {
         all: unset;
@@ -48,9 +48,9 @@
     }
     b {
         color: black;
-        background-color: white;
+        background-color: antiquewhite;
     }
-    a, b {
+    .mh a, b {
         padding-left: 20px;
         padding-right: 20px;
     }
